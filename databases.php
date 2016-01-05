@@ -14,12 +14,42 @@
 		); 
 	}
 ?>
+
+<?php // 2. Perform database query
+	
+	$query  = "select * "; 
+	$query .= "from subjects ";
+	$query .= "where visible = 1 "; 
+	$query .= "order by position asc";  
+	$result = mysqli_query($connection, $query); 	
+	// $result is a special kind of object called a "resource" 
+	// which is a collection of database rows
+	
+	// test if there was a query error
+	if (!$result){ 
+		die("Database Query Failed"); 
+	}
+?>
 <html>
 	<head>
 		<title></title>
 	</head>
-	
 	<body>
+		
+		<pre>
+		<?php 
+			// 3. use return data (if any)
+			while ($row = mysqli_fetch_row($result)) { 
+				// output data from each row
+				var_dump($row); 
+				echo "<hr />"; 
+			}
+		?>
+		</pre>
+		<?php
+			// 4. Release returned data
+			mysqli_free_result($result); 
+		?>
 		
 		<script src=""></script>
 	</body>
