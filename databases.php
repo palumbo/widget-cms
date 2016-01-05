@@ -36,16 +36,15 @@
 	</head>
 	<body>
 		
-		<pre>
+		<ul>
 		<?php 
 			// 3. use return data (if any)
-			while ($row = mysqli_fetch_row($result)) { 
-				// output data from each row
-				var_dump($row); 
-				echo "<hr />"; 
-			}
+			while ($row = mysqli_fetch_assoc($result)) { 
 		?>
-		</pre>
+			<li><?php echo $row['menu_name']; ?></li>
+		<?php } ?>
+		</ul>
+			
 		<?php
 			// 4. Release returned data
 			mysqli_free_result($result); 
